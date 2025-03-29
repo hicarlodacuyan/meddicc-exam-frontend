@@ -17,6 +17,8 @@ export type State = {
     completed_date?: string[];
     priority?: string[];
     user?: string[];
+    username?: string[]; // Add this line
+    password?: string[]; // Add this line
   };
   message?: string | null;
 };

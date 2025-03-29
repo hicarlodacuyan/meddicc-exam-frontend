@@ -37,9 +37,8 @@ export async function getTasks(
       "Error fetching tasks:",
       error.response?.data || error.message,
     );
-    return {
-      message: "Failed to fetch tasks.",
-      errors: error.response?.data || { general: ["An error occurred"] },
-    };
+
+    // Return an empty result when there’s an error
+    return { tasks: { results: [], count: 0 } };
   }
 }

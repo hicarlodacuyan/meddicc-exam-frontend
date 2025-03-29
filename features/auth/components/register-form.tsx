@@ -9,11 +9,11 @@ import {
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "@/components/ui/button";
 import { useActionState } from "react";
-import { State } from "@/types/api";
+import { AuthState } from "@/types/api";
 import { register } from "@/features/auth/api/register";
 
 export function RegisterForm() {
-  const initialState: State = { errors: {}, message: null };
+  const initialState: AuthState = { errors: {}, message: null };
   const [state, formAction] = useActionState(register, initialState);
 
   return (

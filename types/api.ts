@@ -17,8 +17,15 @@ export type State = {
     completed_date?: string[];
     priority?: string[];
     user?: string[];
-    username?: string[]; // Add this line
-    password?: string[]; // Add this line
+  };
+  message?: string | null;
+};
+
+export type AuthState = {
+  errors?: {
+    username?: string[];
+    email?: string[];
+    password?: string[];
   };
   message?: string | null;
 };

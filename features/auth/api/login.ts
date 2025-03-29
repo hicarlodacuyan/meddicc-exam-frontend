@@ -1,14 +1,14 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { State } from "@/types/api";
+import { AuthState } from "@/types/api";
 import apiClient from "@/lib/api-client";
 import { cookies } from "next/headers";
 
 export async function login(
-  prevState: State,
+  prevState: AuthState,
   formData: FormData,
-): Promise<State> {
+): Promise<AuthState> {
   const { username, password } = Object.fromEntries(formData);
 
   try {

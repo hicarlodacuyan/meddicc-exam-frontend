@@ -29,7 +29,7 @@ export default function Home() {
             </Link>
             <Link href="/register">
               <p className="text-slate-500 text-sm">
-                Don't have an account? Register.
+                Don&apos;t have an account? Register.
               </p>
             </Link>
           </div>

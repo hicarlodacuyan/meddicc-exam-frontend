@@ -1,9 +1,9 @@
+"use server";
+
 import { revalidatePath } from "next/cache";
 import apiClient from "@/lib/api-client";
 
 export async function deleteTask(id: string) {
-  "use server";
-
   try {
     await apiClient.delete(`/tasks/${id}/`);
     console.log(`Task with ID ${id} deleted successfully.`);

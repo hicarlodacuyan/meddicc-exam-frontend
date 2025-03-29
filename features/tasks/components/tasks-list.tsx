@@ -20,7 +20,7 @@ export default async function TasksList() {
 
   return (
     <div className="mt-6 space-y-4">
-      {tasks?.map((task: Task) => (
+      {tasks?.results?.map((task: Task) => (
         <Card key={task.id} className="bg-white shadow-sm">
           <CardHeader className="flex justify-between items-start">
             <CardTitle className="text-xl font-semibold">{task.name}</CardTitle>

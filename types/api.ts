@@ -19,6 +19,7 @@ export type State = {
     user?: string[];
   };
   message?: string | null;
+  task?: any;
 };
 
 export type AuthState = {

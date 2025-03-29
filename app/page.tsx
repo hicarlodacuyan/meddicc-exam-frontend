@@ -4,6 +4,7 @@ import MeddiccLogo from "@/components/ui/meddicc-logo";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Landing",
@@ -20,8 +21,8 @@ export default function Home() {
           <p
             className={`${lusitana.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}
           >
-            This is a simple full-stack tasks application made with NextJS, DRF,
-            and PostgreSQL as part of the{" "}
+            This is a simple full-stack tasks application made with NextJS,
+            DRF,with authentication and PostgreSQL as part of the{" "}
             <span className="text-blue-500">MEDDICC</span> technical
             examination.
           </p>
@@ -40,7 +41,20 @@ export default function Home() {
           </div>
         </div>
         <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
-          {/* Add Hero Images Here for mobile & desktop */}
+          <Image
+            src="/hero-desktop.png"
+            width={2000}
+            height={1520}
+            className="hidden md:block"
+            alt="Screenshots of the dashboard project showing desktop version"
+          />
+          <Image
+            src="/hero-mobile.png"
+            width={560}
+            height={620}
+            className="block md:hidden"
+            alt="Screenshots of the dashboard project showing desktop version"
+          />
         </div>
       </div>
     </main>

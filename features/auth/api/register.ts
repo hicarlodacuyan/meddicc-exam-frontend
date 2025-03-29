@@ -5,7 +5,10 @@ import { State } from "@/types/api";
 import apiClient from "@/lib/api-client";
 import { cookies } from "next/headers";
 
-export async function register(prevState: State, formData: FormData) {
+export async function register(
+  prevState: State,
+  formData: FormData,
+): Promise<State> {
   const { username, email, password } = Object.fromEntries(formData);
   const cookieStore = await cookies();
   cookieStore.delete("accessToken");

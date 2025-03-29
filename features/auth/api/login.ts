@@ -5,7 +5,10 @@ import { State } from "@/types/api";
 import apiClient from "@/lib/api-client";
 import { cookies } from "next/headers";
 
-export async function login(prevState: State, formData: FormData) {
+export async function login(
+  prevState: State,
+  formData: FormData,
+): Promise<State> {
   const { username, password } = Object.fromEntries(formData);
 
   try {

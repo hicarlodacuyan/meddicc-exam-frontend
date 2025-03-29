@@ -21,8 +21,8 @@ export default function Home() {
           <p
             className={`${lusitana.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}
           >
-            This is a simple full-stack tasks application made with NextJS,
-            DRF,with authentication and PostgreSQL as part of the{" "}
+            This is a simple full-stack tasks application made with NextJS, DRF,
+            and PostgreSQL as part of the
             <span className="text-blue-500">MEDDICC</span> technical
             examination.
           </p>

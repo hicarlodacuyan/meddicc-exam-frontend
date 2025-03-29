@@ -10,9 +10,13 @@ export type TaskData = {
 
 export type State = {
   errors?: {
-    customerId?: string[];
-    amount?: string[];
-    status?: string[];
+    name?: string[];
+    description?: string[];
+    completed?: string[];
+    due_date?: string[];
+    completed_date?: string[];
+    priority?: string[];
+    user?: string[];
   };
   message?: string | null;
 };

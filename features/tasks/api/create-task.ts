@@ -5,7 +5,10 @@ import { formSchema } from "../lib/task-schema";
 import { State } from "@/types/api";
 import apiClient from "@/lib/api-client";
 
-export async function createTask(prevState: State, formData: FormData) {
+export async function createTask(
+  prevState: State,
+  formData: FormData,
+): Promise<State> {
   const taskData = Object.fromEntries(formData);
   taskData.completed = taskData.completed === "on" ? "true" : "false";
 

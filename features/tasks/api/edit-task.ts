@@ -10,7 +10,7 @@ export async function editTask(
   id: string,
   prevState: State,
   formData: FormData,
-) {
+): Promise<State> {
   const taskData = Object.fromEntries(formData);
 
   if (taskData.user) taskData.user = String(taskData.user);

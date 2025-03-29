@@ -14,7 +14,6 @@ export default async function Page(props: {
   const currentPageSize = Number(searchParams?.page_size) || 5;
 
   const { tasks } = await getTasks(currentPage, currentPageSize);
-  const totalPages = Math.ceil(tasks.count / currentPageSize);
 
   return (
     <div>

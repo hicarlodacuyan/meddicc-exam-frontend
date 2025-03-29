@@ -51,7 +51,7 @@ export default async function Page(props: {
       <div className="flex flex-col shrink-0 p-4 bg-blue-500 rounded-lg">
         <CreateTask />
       </div>
-      {tasks.results.length > 0 ? (
+      {tasks.results.length > 0 && (
         <div className="flex flex-col gap-4">
           <Search placeholder="Search tasks..." />
           <Suspense fallback={<TasksListSkeleton />}>
@@ -67,10 +67,6 @@ export default async function Page(props: {
             totalCount={tasks.count}
           />
         </div>
-      ) : (
-        <h1 className={`${lusitana.className} text-4xl text-slate-300 h-full`}>
-          Good day! You are all cleared. :)
-        </h1>
       )}
     </div>
   );

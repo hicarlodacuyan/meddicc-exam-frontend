@@ -2,9 +2,11 @@
 
 import apiClient from "@/lib/api-client";
 
-export async function getTasks() {
+export async function getTasks(page = 1, pageSize = 5) {
   try {
-    const response = await apiClient.get("/tasks/");
+    const response = await apiClient.get(
+      `/tasks/?page=${page}&page_size=${pageSize}`,
+    );
 
     return {
       message: "Tasks fetched successfully!",

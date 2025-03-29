@@ -1,7 +1,5 @@
-import { getTasks } from "@/features/tasks/api/get-tasks";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DeleteTask } from "./delete-task";
-import { EditTask } from "./edit-task";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PencilIcon } from "@heroicons/react/24/outline";
@@ -15,12 +13,10 @@ type Task = {
   due_date?: string;
 };
 
-export default async function TasksList() {
-  const { tasks } = await getTasks();
-
+export default async function TasksList({ tasks }: { tasks: Task[] }) {
   return (
     <div className="mt-6 space-y-4">
-      {tasks?.results?.map((task: Task) => (
+      {tasks?.map((task: Task) => (
         <Card key={task.id} className="bg-white shadow-sm">
           <CardHeader className="flex justify-between items-start">
             <CardTitle className="text-xl font-semibold">{task.name}</CardTitle>

@@ -1,4 +1,3 @@
-import { lusitana } from "@/components/fonts/lusitana";
 import { TasksListSkeleton } from "@/components/ui/skeletons";
 import Logout from "@/features/auth/components/logout";
 import { getTasks } from "@/features/tasks/api/get-tasks";

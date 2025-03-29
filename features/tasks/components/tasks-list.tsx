@@ -15,7 +15,7 @@ type Task = {
 
 export default async function TasksList({ tasks }: { tasks: Task[] }) {
   return (
-    <div className="mt-6 space-y-4">
+    <div className="space-y-4">
       {tasks?.map((task: Task) => (
         <Card key={task.id} className="bg-white shadow-sm">
           <CardHeader className="flex justify-between items-start">

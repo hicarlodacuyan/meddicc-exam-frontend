@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
@@ -11,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 interface SearchProps {
   placeholder: string;
@@ -20,6 +22,13 @@ export default function Search({ placeholder }: SearchProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+
+  // State to manage the input and select values
+  const [searchTerm, setSearchTerm] = useState(searchParams.get("name") ?? "");
+  const [completed, setCompleted] = useState(
+    searchParams.get("completed") ?? "",
+  );
+  const [priority, setPriority] = useState(searchParams.get("priority") ?? "");
 
   const handleSearch = useDebouncedCallback((key: string, value: string) => {
     const params = new URLSearchParams(searchParams);
@@ -32,51 +41,82 @@ export default function Search({ placeholder }: SearchProps) {
     replace(`${pathname}?${params.toString()}`);
   }, 300);
 
+  const clearFilters = () => {
+    // Reset all input and select states
+    setSearchTerm("");
+    setCompleted("");
+    setPriority("");
+    replace(pathname);
+  };
+
+  const hasFilters = Array.from(searchParams.keys()).some((key) =>
+    [
+      "name",
+      "completed",
+      "due_date_start",
+      "due_date_end",
+      "priority",
+      "user",
+    ].includes(key),
+  );
+
   return (
-    <div className="flex flex-wrap gap-4 self-end">
-      <div className="relative flex items-center">
-        <MagnifyingGlassIcon className="absolute left-3 h-5 w-5 text-gray-500" />
-        <Input
-          className="pl-10"
-          placeholder={placeholder}
-          onChange={(e) => handleSearch("name", e.target.value)}
-          defaultValue={searchParams.get("name") ?? ""}
-        />
+    <div className="flex flex-wrap gap-4 justify-between">
+      <div>
+        {hasFilters && (
+          <Button variant="secondary" onClick={clearFilters}>
+            Clear Filters
+          </Button>
+        )}
       </div>
-      <Select onValueChange={(value) => handleSearch("completed", value)}>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Completed" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="true">Completed</SelectItem>
-          <SelectItem value="false">Pending</SelectItem>
-        </SelectContent>
-      </Select>
-      {/* <Input */}
-      {/*   type="date" */}
-      {/*   placeholder="Due Date From" */}
-      {/*   onChange={(e) => handleSearch("due_date_after", e.target.value)} */}
-      {/* /> */}
-      {/* <Input */}
-      {/*   type="date" */}
-      {/*   placeholder="Due Date To" */}
-      {/*   onChange={(e) => handleSearch("due_date_before", e.target.value)} */}
-      {/* /> */}
-      <Select onValueChange={(value) => handleSearch("priority", value)}>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Priority" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="low">Low</SelectItem>
-          <SelectItem value="medium">Medium</SelectItem>
-          <SelectItem value="high">High</SelectItem>
-        </SelectContent>
-      </Select>
-      {/* <Input */}
-      {/*   type="number" */}
-      {/*   placeholder="User ID" */}
-      {/*   onChange={(e) => handleSearch("user", e.target.value)} */}
-      {/* /> */}
+
+      <div className="self-end flex gap-4">
+        <div className="relative flex items-center">
+          <MagnifyingGlassIcon className="absolute left-3 h-5 w-5 text-gray-500" />
+          <Input
+            className="pl-10"
+            placeholder={placeholder}
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              handleSearch("name", e.target.value);
+            }}
+          />
+        </div>
+
+        <Select
+          value={completed}
+          onValueChange={(value) => {
+            setCompleted(value);
+            handleSearch("completed", value);
+          }}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Completed" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="true">Completed</SelectItem>
+            <SelectItem value="false">Pending</SelectItem>
+          </SelectContent>
+        </Select>
+
+        <Select
+          value={priority}
+          onValueChange={(value) => {
+            setPriority(value);
+            handleSearch("priority", value);
+          }}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Priority" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="low">Low</SelectItem>
+            <SelectItem value="medium">Medium</SelectItem>
+            <SelectItem value="high">High</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 }

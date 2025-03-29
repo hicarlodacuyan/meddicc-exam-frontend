@@ -23,17 +23,11 @@ export async function login(prevState: State, formData: FormData) {
       };
     }
 
-    return {
-      message: "Invalid credentials.",
-      errors: { general: ["Invalid email or password."] },
-    };
+    redirect("/dashboard");
   } catch (error: any) {
-    console.error("Error during login:", error.response?.data || error.message);
     return {
       message: "Failed to login.",
       errors: error.response?.data || { general: ["An error occurred"] },
     };
-  } finally {
-    redirect("/dashboard");
   }
 }

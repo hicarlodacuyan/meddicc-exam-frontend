@@ -3,6 +3,11 @@ import { lusitana } from "@/components/fonts/lusitana";
 import MeddiccLogo from "@/components/ui/meddicc-logo";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Landing",
+};
 
 export default function Home() {
   return (

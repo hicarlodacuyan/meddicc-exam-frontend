@@ -1,6 +1,11 @@
 import { fetchTaskById } from "@/features/tasks/api/get-task";
 import { EditTask } from "@/features/tasks/components/edit-task";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Edit Task",
+};
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;

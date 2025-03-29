@@ -1,3 +1,4 @@
+import Logout from "@/features/auth/components/logout";
 import { getTasks } from "@/features/tasks/api/get-tasks";
 import { CreateTask } from "@/features/tasks/components/create-task";
 import { PaginationWithLinks } from "@/features/tasks/components/pagination-with-links";
@@ -36,6 +37,9 @@ export default async function Page(props: {
 
   return (
     <div className="flex flex-col gap-4">
+      <div className="self-end">
+        <Logout />
+      </div>
       <div className="flex flex-col shrink-0 p-4 bg-blue-500 rounded-lg">
         <CreateTask />
       </div>

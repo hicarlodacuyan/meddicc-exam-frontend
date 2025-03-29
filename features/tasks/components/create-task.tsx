@@ -20,7 +20,7 @@ export function CreateTask() {
   const [state, formAction] = useActionState(createTask, initialState);
 
   return (
-    <form action={formAction} className="space-y-4">
+    <form action={formAction} className="space-y-4 text-slate-300">
       <div>
         <label className="block text-sm font-medium">Task Name</label>
         <Input

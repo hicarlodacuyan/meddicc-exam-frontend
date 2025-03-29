@@ -70,8 +70,8 @@ export default function Search({ placeholder }: SearchProps) {
         )}
       </div>
 
-      <div className="self-end flex flex-wrap gap-4">
-        <div className="relative flex items-center">
+      <div className="self-end flex flex-wrap gap-2">
+        <div className="relative flex items-center flex-auto">
           <MagnifyingGlassIcon className="absolute left-3 h-5 w-5 text-gray-500" />
           <Input
             className="pl-10"
@@ -84,38 +84,42 @@ export default function Search({ placeholder }: SearchProps) {
           />
         </div>
 
-        <Select
-          value={completed}
-          onValueChange={(value) => {
-            setCompleted(value);
-            handleSearch("completed", value);
-          }}
-        >
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Completed" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="true">Completed</SelectItem>
-            <SelectItem value="false">Pending</SelectItem>
-          </SelectContent>
-        </Select>
+        <div className="flex-auto ">
+          <Select
+            value={completed}
+            onValueChange={(value) => {
+              setCompleted(value);
+              handleSearch("completed", value);
+            }}
+          >
+            <SelectTrigger className="w-full md:w-[180px]">
+              <SelectValue placeholder="Completed" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="true">Completed</SelectItem>
+              <SelectItem value="false">Pending</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
 
-        <Select
-          value={priority}
-          onValueChange={(value) => {
-            setPriority(value);
-            handleSearch("priority", value);
-          }}
-        >
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Priority" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="low">Low</SelectItem>
-            <SelectItem value="medium">Medium</SelectItem>
-            <SelectItem value="high">High</SelectItem>
-          </SelectContent>
-        </Select>
+        <div className="flex-auto">
+          <Select
+            value={priority}
+            onValueChange={(value) => {
+              setPriority(value);
+              handleSearch("priority", value);
+            }}
+          >
+            <SelectTrigger className="w-full md:w-[180px]">
+              <SelectValue placeholder="Priority" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="low">Low</SelectItem>
+              <SelectItem value="medium">Medium</SelectItem>
+              <SelectItem value="high">High</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
     </div>
   );

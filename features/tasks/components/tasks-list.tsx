@@ -46,9 +46,9 @@ export default async function TasksList({
               <p className="text-gray-700">
                 {task.description || "No description"}
               </p>
+              <p className="text-gray-500 text-sm">Priority: {task.priority}</p>
               <p className="text-gray-500 text-sm">
-                Priority: {task.priority} • Status:{" "}
-                {task.completed ? "✅ Completed" : "❗ Pending"}
+                Status: {task.completed ? "✅ completed" : "❗ pending"}
               </p>
               {task.due_date && (
                 <p className="text-gray-400 text-xs">

@@ -3,6 +3,7 @@ import { DeleteTask } from "./delete-task";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PencilIcon } from "@heroicons/react/24/outline";
+import { getTasks } from "../api/get-tasks";
 
 type Task = {
   id: number;
@@ -13,10 +14,20 @@ type Task = {
   due_date?: string;
 };
 
-export default async function TasksList({ tasks }: { tasks: Task[] }) {
+export default async function TasksList({
+  currentPage,
+  currentPageSize,
+  filters,
+}: {
+  currentPage: number;
+  currentPageSize: number;
+  filters: any;
+}) {
+  const { tasks } = await getTasks(currentPage, currentPageSize, filters);
+
   return (
     <div className="space-y-4">
-      {tasks?.map((task: Task) => (
+      {tasks?.results?.map((task: Task) => (
         <Card key={task.id} className="bg-white shadow-sm">
           <CardHeader className="flex justify-between items-start">
             <CardTitle className="text-xl font-semibold">{task.name}</CardTitle>

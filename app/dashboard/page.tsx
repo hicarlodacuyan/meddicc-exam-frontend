@@ -1,9 +1,11 @@
+import { TasksListSkeleton } from "@/components/ui/skeletons";
 import Logout from "@/features/auth/components/logout";
 import { getTasks } from "@/features/tasks/api/get-tasks";
 import { CreateTask } from "@/features/tasks/components/create-task";
 import { PaginationWithLinks } from "@/features/tasks/components/pagination-with-links";
 import Search from "@/features/tasks/components/search";
 import TasksList from "@/features/tasks/components/tasks-list";
+import { Suspense } from "react";
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -45,7 +47,13 @@ export default async function Page(props: {
       </div>
       <div className="flex flex-col gap-4">
         <Search placeholder="Search tasks..." />
-        <TasksList tasks={tasks.results} />
+        <Suspense fallback={<TasksListSkeleton />}>
+          <TasksList
+            currentPage={currentPage}
+            currentPageSize={currentPageSize}
+            filters={filters}
+          />
+        </Suspense>
         <PaginationWithLinks
           page={currentPage}
           pageSize={currentPageSize}

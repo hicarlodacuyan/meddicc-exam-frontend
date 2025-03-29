@@ -16,18 +16,13 @@ export async function login(prevState: State, formData: FormData) {
     if (access) {
       const cookieStore = await cookies();
       cookieStore.set("accessToken", access, { secure: true });
-
-      return {
-        message: "Login successful!",
-        token: access,
-      };
     }
-
-    redirect("/dashboard");
   } catch (error: any) {
     return {
       message: "Failed to login.",
       errors: error.response?.data || { general: ["An error occurred"] },
     };
   }
+
+  redirect("/dashboard");
 }

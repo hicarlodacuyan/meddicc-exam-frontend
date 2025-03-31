@@ -47,7 +47,7 @@ export function EditTask({ task }: { task: Task }) {
       <div>
         <label className="block text-sm font-medium">Description</label>
         <Textarea
-          defaultValue={task.description}
+          defaultValue={task.description ?? ""}
           name="description"
           placeholder="Fruits, vegetables, meats, etc."
         />

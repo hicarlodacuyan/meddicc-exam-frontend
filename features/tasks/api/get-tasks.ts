@@ -1,6 +1,7 @@
 "use server";
 
 import apiClient from "@/lib/api-client";
+import { TaskResponse } from "@/types/api";
 
 type TaskFilters = {
   name?: string;
@@ -15,7 +16,7 @@ export async function getTasks(
   page = 1,
   pageSize = 5,
   filters: TaskFilters = {},
-) {
+): Promise<{ message: string; tasks: TaskResponse }> {
   try {
     let url = `/tasks/?page=${page}&page_size=${pageSize}`;
 
@@ -38,7 +39,9 @@ export async function getTasks(
       error.response?.data || error.message,
     );
 
-    // Return an empty result when there’s an error
-    return { tasks: { results: [], count: 0 } };
+    return {
+      message: "Error fetching tasks.",
+      tasks: { results: [], count: 0 },
+    };
   }
 }

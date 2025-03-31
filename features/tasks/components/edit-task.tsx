@@ -1,6 +1,6 @@
 "use client";
 
-import { State } from "@/types/api";
+import { State, Task } from "@/types/api";
 import { editTask } from "../api/edit-task";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,15 +14,6 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { useActionState, useState } from "react";
-
-type Task = {
-  id: number;
-  name: string;
-  description?: string;
-  priority: string;
-  completed: boolean;
-  due_date?: string;
-};
 
 export function EditTask({ task }: { task: Task }) {
   const taskId = String(task.id);

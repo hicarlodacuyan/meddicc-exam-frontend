@@ -5,15 +5,6 @@ import { Button } from "@/components/ui/button";
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { getTasks } from "../api/get-tasks";
 
-type Task = {
-  id: number;
-  name: string;
-  description?: string;
-  priority: string;
-  completed: boolean;
-  due_date?: string;
-};
-
 export default async function TasksList({
   currentPage,
   currentPageSize,
@@ -27,7 +18,7 @@ export default async function TasksList({
 
   return (
     <div className="space-y-4">
-      {tasks?.results?.map((task: Task) => (
+      {tasks?.results?.map((task) => (
         <Card key={task.id} className="bg-white shadow-sm">
           <CardHeader className="flex justify-between items-start">
             <CardTitle className="text-xl font-semibold">{task.name}</CardTitle>

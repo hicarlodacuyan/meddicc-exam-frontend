@@ -1,4 +1,5 @@
-export type TaskData = {
+export type Task = {
+  id?: number;
   name: string;
   description?: string | null;
   completed: boolean;
@@ -6,6 +7,11 @@ export type TaskData = {
   completed_date?: string | null;
   priority: "low" | "medium" | "high";
   user?: string | null;
+};
+
+export type TaskResponse = {
+  results: Task[];
+  count: number;
 };
 
 export type State = {
@@ -19,7 +25,7 @@ export type State = {
     user?: string[];
   };
   message?: string | null;
-  task?: any;
+  task?: Task;
 };
 
 export type AuthState = {

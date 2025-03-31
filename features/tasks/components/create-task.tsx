@@ -22,14 +22,16 @@ export function CreateTask() {
   return (
     <form action={formAction} className="space-y-4 text-white">
       <div>
-        <label className="block text-sm font-medium">Task Name</label>
+        <label htmlFor="task-name" className="block text-sm font-medium">
+          Task Name
+        </label>
         <Input
+          id="task-name"
           name="name"
           placeholder="e.g. Buy groceries"
           className="h-12"
           aria-describedby="task-error"
         />
-
         <div id="task-error" aria-live="polite" aria-atomic="true">
           {state?.errors?.name &&
             state.errors.name.map((error: string) => (
@@ -41,8 +43,11 @@ export function CreateTask() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium">Description</label>
+        <label htmlFor="description" className="block text-sm font-medium">
+          Description
+        </label>
         <Textarea
+          id="description"
           name="description"
           placeholder="Fruits, vegetables, meats, etc."
         />
@@ -50,9 +55,11 @@ export function CreateTask() {
 
       <div className="flex gap-4 items-start flex-wrap">
         <div>
-          <label className="block text-sm font-medium">Priority</label>
+          <label htmlFor="priority" className="block text-sm font-medium">
+            Priority
+          </label>
           <Select name="priority" defaultValue="medium">
-            <SelectTrigger>
+            <SelectTrigger id="priority">
               <SelectValue placeholder="Select priority" />
             </SelectTrigger>
             <SelectContent>
@@ -64,8 +71,11 @@ export function CreateTask() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium">Due Date</label>
+          <label htmlFor="due-date" className="block text-sm font-medium">
+            Due Date
+          </label>
           <Input
+            id="due-date"
             type="datetime-local"
             name="due_date"
             aria-describedby="due_date-error"
@@ -81,8 +91,10 @@ export function CreateTask() {
         </div>
 
         <div className="flex flex-col items-center gap-2">
-          <label className="text-sm font-medium">Completed</label>
-          <Checkbox name="completed" />
+          <label htmlFor="completed" className="text-sm font-medium">
+            Completed
+          </label>
+          <Checkbox id="completed" name="completed" />
         </div>
       </div>
 
